@@ -1,0 +1,409 @@
+// Importar módulo de color
+@use 'sass:color';
+
+// Variables
+$primary-color: #0f0f0f;
+$secondary-color: #e50914;
+$background-color: #f0f0f0;
+$text-color: #333;
+$font-stack-primary: 'Roboto', sans-serif;
+
+$spacer: 1rem;
+$spacer-lg: 2rem;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg) { @content; }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6;
+  font-family: $font-stack-primary;
+}
+
+// Base Styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $spacer;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: $spacer;
+}
+
+a {
+  color: $secondary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Layout Styles
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacer;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 - $spacer;  // Corregido: espacio después de "-"
+}
+
+.col {
+  flex: 1;
+  padding: 0 $spacer;
+}
+
+// Components
+.btn {
+  padding: $spacer $spacer-lg;
+  background-color: $secondary-color;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: color.mix(black, $secondary-color, 10%);  // Usar color.mix() para oscurecer el color
+  }
+}
+
+.card {
+  border: 1px solid $text-color;
+  border-radius: 4px;
+  padding: $spacer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Hero Section
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+// Footer
+.footer {
+  background-color: $primary-color;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0;
+
+  a {
+    color: color.mix(white, $secondary-color, 10%);  // Usar color.mix() para aclarar el color
+    margin-left: 1rem;
+
+    &:hover {
+      color: color.mix(white, $secondary-color, 20%);
+    }
+  }
+}
+
+// Utilities
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: $spacer-lg;
+}
+
+.mb-lg {
+  margin-bottom: $spacer-lg;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;  // Asegura que el video esté al fondo
+}
+
+.navbar {
+    z-index: 10;  // Asegura que la barra de navegación esté encima del video
+    background-color: rgba(0, 0, 0, 0.7);  // Fondo semitransparente para mejorar la visibilidad
+}
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;  // Asegura que el video no se salga del contenedor
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;  // Asegura que el contenido de la hero esté sobre el video
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1));
+    z-index: 0;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  text-align: center;
+
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+body {
+    background-color: #000;  // Fondo negro para todo el cuerpo de la página
+    color: #fff;  // Texto blanco para asegurar legibilidad
+}
+
+.navbar {
+    background-color: #000;  // Barra de navegación con fondo negro
+}
+
+.footer {
+    background-color: #000;  // Fondo negro para el footer
+}
+
+.featured {
+    background-color: #000;  // Fondo negro para toda la sección destacada
+}
+
+.card {
+    background-color: #333;  // Fondo oscuro para las tarjetas para dar un poco de contraste
+    border: none;
+}
+
+@keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .card-cascade {
+      position: relative;
+  
+      .card-item {
+          position: relative;
+          opacity: 0; // Inicia invisible para animación de entrada
+  
+          &:nth-child(odd) {
+              animation: slideInLeft 1s ease forwards; // Tarjetas impares entran desde la izquierda
+          }
+  
+          &:nth-child(even) {
+              animation: slideInRight 1s ease forwards; // Tarjetas pares entran desde la derecha
+          }
+  
+          &:hover {
+              transform: scale(1.05); // Efecto de zoom al pasar el ratón
+              transition: transform 0.3s ease-in-out;
+          }
+      }
+  
+      .card-img-top {
+          width: 100%; // Hace que la imagen ocupe todo el ancho del contenedor de la tarjeta
+          height: 200px; // Establece una altura uniforme para todas las imágenes
+          object-fit: cover; // Asegura que la imagen mantenga la proporción y llene el espacio del contenedor
+      }
+  }
+  
+  .title-marquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-color: #000;  // Fondo negro para resaltar el texto
+    padding: 20px 0;
+
+    .moving-title {
+        display: inline-block;
+        font-size: 5rem;  // Ajustar el tamaño según lo deseado
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #000, #fff, #000);
+        background-size: 200% auto;  // Duplicar el tamaño del fondo para permitir la animación
+        -webkit-background-clip: text;  // Prefijo específico para navegadores WebKit
+        background-clip: text;  // Versión estándar de la propiedad
+        -webkit-text-fill-color: transparent;  // Prefijo específico para navegadores WebKit
+        white-space: nowrap;  // Asegura que el texto no se divida en líneas
+        animation: scrollText 15s linear infinite, shine 4s linear infinite;  // Animaciones combinadas
+    }
+
+    @keyframes scrollText {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    
+    @keyframes shine {
+        0% {
+            background-position: 200% center;
+        }
+        100% {
+            background-position: -200% center;
+        }
+    }
+}
+
+.nosotros {
+  padding: $spacer-lg 0; // Espaciado vertical
+  background-color: $primary-color; // Fondo oscuro
+  color: #fff;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: $spacer;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: $spacer-lg;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card {
+    background-color: $secondary-color; // Fondo oscuro para tarjetas
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+    }
+
+    .card-body {
+      padding: $spacer;
+      text-align: center;
+
+      .card-title {
+        font-size: 1.5rem;
+        margin-bottom: $spacer;
+      }
+
+      .card-text {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+body {
+  background-color: #000; // Fondo negro
+  color: #d3d3d3; // Texto gris claro
+}
+
+img {
+  border-radius: 8px; // Bordes redondeados
+}
+
+h5 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
